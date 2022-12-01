@@ -194,7 +194,7 @@ function searchCar() {
     document.getElementById('carList').innerHTML = filterResult.length > 0 ? result.join("") : `<div>No Cars Found</div>`;
 
 }
-// searchCar()
+searchCar()
 // searchButton.addEventListener('click',searchCar)
 
 function reload(){
