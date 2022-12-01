@@ -173,11 +173,13 @@ function editCarCard(i) {
 const searchBar = document.getElementById('search');
 const searchButton = document.getElementById('searchButton');
 
-function searchCar(){
+function searchCar() {
     // console.log(cars)
-    var result = cars.map(function card(dt) {
-        if(searchBar.value.toLowerCase() === dt.make.toLowerCase() || searchBar.value == dt.model.toLowerCase() ||searchBar.value === dt.color.toLowerCase() ||searchBar.value === dt.year){
-            return `<div class="col-md-3">
+    const filterResult = cars.filter(car =>
+        searchBar.value.toLowerCase() === car.make.toLowerCase() || searchBar.value == car.model.toLowerCase() || searchBar.value === car.color.toLowerCase() || searchBar.value === car.year
+    )
+    var result = filterResult.map(function card(dt) {
+        return `<div class="col-md-3">
         <div class="card" style="width: 18rem;">
             <img src="${dt.image}" class="card-img-top" alt="car Photo">
             <div class="card-body">
@@ -188,12 +190,8 @@ function searchCar(){
             </div>  
         </div>
     </div>`
-        } 
-        else{
-            return ''
-        }
-      })
-       document.getElementById('carList').innerHTML = result.join("");
+    })
+    document.getElementById('carList').innerHTML = filterResult.length > 0 ? result.join("") : `<div>No Cars Found</div>`;
 
 }
 // searchCar()
